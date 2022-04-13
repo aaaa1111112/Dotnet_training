@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NewDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="roll" />
+          </Key>
+          <Property Name="roll" Type="int" Nullable="false" />
+          <Property Name="student_name" Type="varchar" MaxLength="20" />
+          <Property Name="student_addr" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'NewDB.dbo.student_marks' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="student_marks">
+          <Property Name="roll" Type="int" />
+          <Property Name="marks" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'NewDB.dbo.student2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="student2">
+          <Property Name="std_name" Type="varchar" MaxLength="20" />
+          <Property Name="std_age" Type="int" />
+          <Property Name="std_roll" Type="int" />
+        </EntityType>-->
+        <Function Name="Get_Name_With_Roll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roll" Type="int" Mode="In" />
+          <Parameter Name="add" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="insert_values_into_table_student2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="age" Type="int" Mode="In" />
+          <Parameter Name="roll" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="NewDBModelStoreContainer">
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="roll" />
+          </Key>
+          <Property Name="roll" Type="Int32" Nullable="false" />
+          <Property Name="student_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="student_addr" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="NewDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="student" EntityType="Self.student" />
+          <FunctionImport Name="Get_Name_With_Roll" ReturnType="Collection(NewDBModel.Get_Name_With_Roll_Result)">
+            <Parameter Name="Roll" Mode="In" Type="Int32" />
+            <Parameter Name="add" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insert_values_into_table_student2">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="age" Mode="In" Type="Int32" />
+            <Parameter Name="roll" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spAll" ReturnType="Collection(NewDBModel.spAll_Result)" />
+        </EntityContainer>
+        <ComplexType Name="Get_Name_With_Roll_Result">
+          <Property Type="Int32" Name="roll" Nullable="false" />
+          <Property Type="String" Name="student_name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="student_addr" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="spAll_Result">
+          <Property Type="String" Name="std_name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="std_age" Nullable="true" />
+          <Property Type="Int32" Name="std_roll" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewDBModelStoreContainer" CdmEntityContainer="NewDBEntities">
+          <EntitySetMapping Name="student">
+            <EntityTypeMapping TypeName="NewDBModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="roll" ColumnName="roll" />
+                <ScalarProperty Name="student_name" ColumnName="student_name" />
+                <ScalarProperty Name="student_addr" ColumnName="student_addr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_Name_With_Roll" FunctionName="NewDBModel.Store.Get_Name_With_Roll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewDBModel.Get_Name_With_Roll_Result">
+                <ScalarProperty Name="roll" ColumnName="roll" />
+                <ScalarProperty Name="student_name" ColumnName="student_name" />
+                <ScalarProperty Name="student_addr" ColumnName="student_addr" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insert_values_into_table_student2" FunctionName="NewDBModel.Store.insert_values_into_table_student2" />
+          <FunctionImportMapping FunctionImportName="spAll" FunctionName="NewDBModel.Store.spAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewDBModel.spAll_Result">
+                <ScalarProperty Name="std_name" ColumnName="std_name" />
+                <ScalarProperty Name="std_age" ColumnName="std_age" />
+                <ScalarProperty Name="std_roll" ColumnName="std_roll" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
