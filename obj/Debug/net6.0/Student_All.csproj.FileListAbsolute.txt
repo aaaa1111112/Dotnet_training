@@ -1,0 +1,15 @@
+F:\github\Student_All\bin\Debug\net6.0\Student_All.exe
+F:\github\Student_All\bin\Debug\net6.0\Student_All.deps.json
+F:\github\Student_All\bin\Debug\net6.0\Student_All.runtimeconfig.json
+F:\github\Student_All\bin\Debug\net6.0\Student_All.dll
+F:\github\Student_All\bin\Debug\net6.0\ref\Student_All.dll
+F:\github\Student_All\bin\Debug\net6.0\Student_All.pdb
+F:\github\Student_All\obj\Debug\net6.0\Student_All.csproj.AssemblyReference.cache
+F:\github\Student_All\obj\Debug\net6.0\Student_All.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\Student_All\obj\Debug\net6.0\Student_All.AssemblyInfoInputs.cache
+F:\github\Student_All\obj\Debug\net6.0\Student_All.AssemblyInfo.cs
+F:\github\Student_All\obj\Debug\net6.0\Student_All.csproj.CoreCompileInputs.cache
+F:\github\Student_All\obj\Debug\net6.0\Student_All.dll
+F:\github\Student_All\obj\Debug\net6.0\ref\Student_All.dll
+F:\github\Student_All\obj\Debug\net6.0\Student_All.pdb
+F:\github\Student_All\obj\Debug\net6.0\Student_All.genruntimeconfig.cache
